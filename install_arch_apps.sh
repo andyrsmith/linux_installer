@@ -60,13 +60,12 @@ dialog --tile "Arch App installation" --infobox \
 ((pacman --noconfirm --needed -S "$line" > /tmp/arch_install 2>&2) \
     || echo "$line" >> /tmp/aur_queue) \
     || echo "$line" >> /tmp/arch_install_failed
-
-if[ "$line" = "zsh" ]; then
+if [ "$line" = "zsh" ]; then
     # Set Zsh as default terminal for our user
     chsh -s "$(which zsh)" "$name"
 fi
 
-if[ "$line" = "networkmanager" ]; then
+if [ "$line" = "networkmanager" ]; then
     systemctl enable NetworkManger.service
 fi
 done
