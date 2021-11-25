@@ -39,7 +39,7 @@ choices=$(cat app_choices) && rm app_choices
 selection="^$(echo $choices | sed -e 's/ /,|^/g'),"
 lines=$(grep -E "$selection" "$apps_path")
 count=$(echo "$lines" | wc -l)
-packages=$(echo "$lines" | awk -F {'print $2'})
+packages=$(echo "$lines" | awk -F, {'print $2'})
 echo "$selection" "$lines" "$count" >> "/tmp/packages"
 
 pacman -Syu --noconfirm
@@ -57,7 +57,7 @@ dialog --title "Arch App installation" --infobox \
     "Downloading and installing program $c out of $count: $line..." \
     8 70
 # need to find out how to do as sudo
-((pacman --noconfirm --needed -S "$line" > /tmp/app_install 2>&2) \
+((pacman --noconfirm --needed -S "$line" > /tmp/app_install 2>&1) \
     || echo "$line" >> /tmp/aur_queue) \
     || echo "$line" >> /tmp/arch_install_failed
 if [ "$line" = "zsh" ]; then
@@ -65,7 +65,7 @@ if [ "$line" = "zsh" ]; then
     chsh -s "$(which zsh)" "$name"
 fi
 
-if [ "$line" = "networkmanager" ]; then
-    systemctl enable NetworkManger.service
-fi
+#if [ "$line" = "networkmanager" ]; then
+#    systemctl enable NetworkManger.service
+#fi
 done
