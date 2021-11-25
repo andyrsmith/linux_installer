@@ -36,7 +36,7 @@ dialog --checklist \
     "${apps[@]}" 2> app_choices
 
 choices=$(cat app_choices) && rm app_choices
-selection="^$(echo $choices | sed -e 's//,|^/g'),"
+selection="^$(echo $choices | sed -e 's/ /,|^/g'),"
 lines=$(grep -E "$selection" "$apps_path")
 count=$(echo "$lines" | wc -l)
 packages=$(echo "$lines" | awk -F {'print $2'})
