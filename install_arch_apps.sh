@@ -8,7 +8,7 @@ apps_path="/tmp/apps.csv"
 
 curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/apps.csv > $apps_path
 
-dialog --tile "Welcome!" \
+dialog --title "Welcome!" \
     --msgbox "Welcome to the installation script for your apps and dotfiles!"\
     10 60
 
@@ -45,7 +45,7 @@ echo "$selection" "$lines" "$count" >> "/tmp/packages"
 pacman -Syu --noconfirm
 rm -f /tmp/aur_queue
 
-dialog --tile "Let's go!" --msgbox \
+dialog --title "Let's go!" --msgbox \
     "The system will now install everything you need.\n\n\
     It will take some time.\n\n " \
     13 60
@@ -53,7 +53,7 @@ dialog --tile "Let's go!" --msgbox \
 c=0
 echo "$packages" | while read -r line; do
 c=$(("$c" + 1))
-dialog --tile "Arch App installation" --infobox \
+dialog --title "Arch App installation" --infobox \
     "Downloading and installing program $c out of $count: $line..." \
     8 70
 # need to find out how to do as sudo
