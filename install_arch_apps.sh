@@ -27,7 +27,11 @@ apps=("essential" "Essentials (Only Arch Install)" off
     "quitebrowser" "Quitebrowser (browser)" off
     "lynx" "Lynx (browser)" off
     "python" "Python" on
-    "joplin" "Joplin" off)
+    "joplin" "Joplin" off
+    "discord" "Discord" off
+    "scid" "SCID" off
+    "dropbox" "Dropbox Client" off
+    "calibre" "Calibre" off)
 
 dialog --checklist \
     "You can now choose what group of application you want to install. \n\n\
@@ -69,3 +73,10 @@ fi
 #    systemctl enable NetworkManger.service
 #fi
 done
+
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/install_user.sh > /tmp/install_user.sh;
+
+#Run user setup script
+sudo -u "$name" sh /tmp/install_user
