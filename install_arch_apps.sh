@@ -74,9 +74,9 @@ fi
 #fi
 done
 
-echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+#echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/install_user.sh > /tmp/install_user.sh;
 
 #Run user setup script
-sudo -u "$name" sh /tmp/install_user
+sudo -u "$name" sh /tmp/install_user.sh
