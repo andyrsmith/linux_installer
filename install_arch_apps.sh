@@ -60,7 +60,7 @@ dialog --title "Arch App installation" --infobox \
     "Downloading and installing program $c out of $count: $line..." \
     8 70
 # need to find out how to do as sudo
-((sudo -u "$name" pacman --noconfirm --needed -S "$line" > tmp/app_install 2>&1) \
+((pacman --noconfirm --needed -S "$line" > tmp/app_install 2>&1) \
     || echo "$line" >> ~/tmp/aur_queue) \
     || echo "$line" >> ~/tmp/arch_install_failed
 if [ "$line" = "zsh" ]; then
