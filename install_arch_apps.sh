@@ -65,7 +65,7 @@ dialog --title "Arch App installation" --infobox \
     || echo "$line" >> ~/tmp/arch_install_failed
 if [ "$line" = "zsh" ]; then
     # Set Zsh as default terminal for our user
-    chsh -s "$(which zsh)" "$name"
+    usermod -s "$(which zsh)" "$name"
 fi
 
 #if [ "$line" = "networkmanager" ]; then
