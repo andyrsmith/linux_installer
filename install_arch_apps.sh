@@ -3,7 +3,7 @@
 
 name=$(cat ~/tmp/user_name)
 
-apps_path="~/tmp/apps.csv"
+apps_path="tmp/apps.csv"
 
 curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/apps.csv > $apps_path
 
