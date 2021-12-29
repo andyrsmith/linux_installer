@@ -1,10 +1,9 @@
 #!/bin/bash
 
-pacman -Sy dialog
 
-name=$(cat /tmp/user_name)
+name=$(cat tmp/user_name)
 
-apps_path="/tmp/apps.csv"
+apps_path="tmp/apps.csv"
 
 curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/apps.csv > $apps_path
 
@@ -47,7 +46,7 @@ packages=$(echo "$lines" | awk -F, {'print $2'})
 echo "$selection" "$lines" "$count" >> "/tmp/packages"
 
 pacman -Syu --noconfirm
-rm -f /tmp/aur_queue
+rm -f tmp/aur_queue
 
 dialog --title "Let's go!" --msgbox \
     "The system will now install everything you need.\n\n\
@@ -61,9 +60,9 @@ dialog --title "Arch App installation" --infobox \
     "Downloading and installing program $c out of $count: $line..." \
     8 70
 # need to find out how to do as sudo
-((pacman --noconfirm --needed -S "$line" > /tmp/app_install 2>&1) \
-    || echo "$line" >> /tmp/aur_queue) \
-    || echo "$line" >> /tmp/arch_install_failed
+((pacman --noconfirm --needed -S "$line" > tmp/app_install 2>&1) \
+    || echo "$line" >> tmp/aur_queue) \
+    || echo "$line" >> tmp/arch_install_failed
 if [ "$line" = "zsh" ]; then
     # Set Zsh as default terminal for our user
     chsh -s "$(which zsh)" "$name"
@@ -74,7 +73,7 @@ fi
 #fi
 done
 
-#echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 curl https://raw.githubusercontent.com/andyrsmith/linux_installer/main/install_user.sh > install_user.sh;
 

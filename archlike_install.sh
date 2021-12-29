@@ -2,8 +2,8 @@
 pacman --noconfirm -S dialog
 
 name=$(whoami)
-
-echo "$name" > /tmp/user_name
+mkdir tmp
+echo "$name" > tmp/user_name
 
 dialog --title "App and Dotfiles installation" --yesno \
     "Do you want to install all your apps and your dotfiles?" \
