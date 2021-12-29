@@ -18,19 +18,19 @@ aur_check() {
     for arg in "$@"
     do
         if [[ "$qm" != *"$arg"* ]]; then
-            yay --noconfirm -S "$arg" &>> tmp/aur_install \
-                || aur_install "$arg" &>> tmp/aur_install
+            yay --noconfirm -S "$arg" &>> ~/tmp/aur_install \
+                || aur_install "$arg" &>> ~/tmp/aur_install
         fi
     done
 }
 
-cd /tmp
+cd ~/tmp
 dialog --infobox "Installing \"Yay\", an AUR helper..." 10 60
 aur_check yay
 
-count=$(wc -l < tmp/aur_queue)
+count=$(wc -l < ~/tmp/aur_queue)
 c=0
-cat tmp/aur_queue | while read -r line
+cat ~/tmp/aur_queue | while read -r line
 do
     c=$(("$c" + 1))
     dialog --infobox \
